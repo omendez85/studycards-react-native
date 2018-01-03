@@ -5,12 +5,15 @@ import { connect } from 'react-redux'
 import { CardsActions } from '../actions/desks'
 
 const desksStyles = StyleSheet.create({
-    deskItem:{
-        color: '#FFF',
-    }
+  home: {
+      color: '#FFF'
+  },
+  deskItem:{
+
+  }
 })
 
-class Cards extends Component {
+class AddDesk extends Component {
     componentDidMount () {
  
     /*   fetchCalendarResults()
@@ -26,8 +29,8 @@ class Cards extends Component {
     }
     render() {
       return (
-        <View style={[desksStyles.deskItem]}>
-          <Text>Cards</Text>
+        <View>
+          <Text style={[desksStyles.home]}>Add Desk</Text>
         </View>
       )
     }
@@ -41,4 +44,4 @@ function mapStateToProps (state) {
   
 export default connect(
     mapStateToProps
-)(Cards)
+)(AddDesk)
