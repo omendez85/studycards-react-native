@@ -2,28 +2,18 @@ import * as Api from '../utils/api'
 
 export const DELETE_DESK = 'DELETE_DESK'
 export const ADD_DESK = 'ADD_DESK'
-export const FETCH_DESK = 'FETCH_DESK'
+export const SET_DESK = 'SET_DESK'
 
 
 /******** INIT STATE *********/
-export function setDefaultDesks () {
-    return dispatch => {
-        Api.setDefaultDesks()
-            .then((data) => {
-                dispatch( setDesk(data) );
-            });
-    };
-}
 
-export function setDesk (data) {
+export function setDefaultDesks (data) {
     return {
-      type: FETCH_DESK,
-      data
+        type: SET_DESK,
+        data
     }
 }
 
-
-/******** INIT STATE *********/
 
 export function getDesk () {
     return dispatch => {
@@ -33,15 +23,6 @@ export function getDesk () {
             });
     };
 }
-
-
-
-
-
-
-
-
-
 
 export function deleteDesk (entries) {
     return {

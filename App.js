@@ -1,15 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { TabNavigator } from 'react-navigation';
-import ReduxThunk from 'redux-thunk'
 
 import reducers from './reducers';
+import {black} from './utils/colors';
+
 import desks from './components/desks';
 import cards from './components/cards';
-import {black} from './utils/colors';
 
 const Menu = TabNavigator({
     Desks: {
@@ -34,7 +34,6 @@ const Menu = TabNavigator({
     }
 });
 
-const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(createStore);
 const mainStyles = StyleSheet.create({
     main: {
         flex: 1,
@@ -46,7 +45,7 @@ const mainStyles = StyleSheet.create({
 export default class App extends React.Component {
     render() {
         return (
-            <Provider store={createStoreWithMiddleware(reducers)}>
+            <Provider store={createStore(reducers)}>
                 <View style={[mainStyles.main]}>
                     <Menu />
                 </View>

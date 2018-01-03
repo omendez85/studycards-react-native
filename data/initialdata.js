@@ -1,5 +1,5 @@
-export const initialData = [
-    {
+export const initialData = {
+    'React': {
         title: 'React',
         questions: [
             {
@@ -12,7 +12,7 @@ export const initialData = [
             }
         ]
     },
-    {
+    'JavaScript': {
         title: 'JavaScript',
         questions: [
             {
@@ -21,4 +21,4 @@ export const initialData = [
             }
         ]
     }
-]
+}

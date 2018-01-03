@@ -1,10 +1,9 @@
 import * as deskActions from '../actions/desks'
 
 
-function desksReducer (state = [], action) {
-    console.log(state)
+function desksReducer (state = [], action) {   
     switch (action.type) {
-        case deskActions.FETCH_DESK :
+        case deskActions.SET_DESK :
             return {
                 ...state,
                 ...action.data,
@@ -12,12 +11,12 @@ function desksReducer (state = [], action) {
         case deskActions.DELETE_DESK :
             return {
                 ...state,
-                ...action.entries,
+                ...action.data,
             }
         case deskActions.ADD_DESK :
             return {
                 ...state,
-                ...action.entry
+                ...action.data
             }
     default :
         return state

@@ -1,43 +1,82 @@
 import { AsyncStorage } from 'react-native'
+//import initData from '../data/initialdata'
 
 const DESKS = 'studyCards:desks';
 const CARDS = 'studyCards:cards';
 
-export function setDefaultDesks () {
-    const initData = [
-        {
-            title: 'React',
-            questions: [
-                {
-                    question: 'What is React?',
-                    answer: 'A library for managing user interfaces'
-                },
-                {
-                    question: 'Where do you make Ajax requests in React?',
-                    answer: 'The componentDidMount lifecycle event'
-                }
-            ]
-        },
-        {
-            title: 'JavaScript',
-            questions: [
-                {
-                    question: 'What is a closure?',
-                    answer: 'The combination of a function and the lexical environment within which that function was declared.'
-                }
-            ]
-        }
-    ]
+const initData = {
+    'React': {
+        title: 'React',
+        questions: [
+            {
+                question: 'What is React?',
+                answer: 'A library for managing user interfaces'
+            },
+            {
+                question: 'Where do you make Ajax requests in React?',
+                answer: 'The componentDidMount lifecycle event'
+            }
+        ]
+    },
+    'JavaScript': {
+        title: 'JavaScript',
+        questions: [
+            {
+                question: 'What is a closure?',
+                answer: 'The combination of a function and the lexical environment within which that function was declared.'
+            }
+        ]
+    }
+}
+
+export function setDefaultDesks () { 
     AsyncStorage.setItem(DESKS, JSON.stringify(initData));
-    return initData;
 }
 
 export function fetchDesks () {
-    return AsyncStorage.getItem(DESKS)
-        .then( () => {
-
-        });
+    return AsyncStorage.getItem(DESKS);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export function submitNewDesk ({ entry, key }) {
     return AsyncStorage.mergeItem(DESKS, JSON.stringify({
