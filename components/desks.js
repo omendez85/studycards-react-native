@@ -49,10 +49,13 @@ class desksComponent extends Component {
                     const currentDesk = this.props.desks[desk];
                     const numQuestions = currentDesk.questions.length;
                     return (
-                        <View key={desk}  style={[desksStyles.containerDeskItem]}>
+                        <View 
+                            key={desk}
+                            style={[desksStyles.containerDeskItem]}>
                             <Text style={[desksStyles.deskItem]}>{desk}</Text>
                             <Text style={[desksStyles.deskItem, desksStyles.deskItemNumber]}>{numQuestions}</Text>
-                            <Ionicons name={'md-arrow-round-forward'} size={17} color={'#FFF'} />
+                            <Ionicons name={'md-arrow-round-forward'} size={17} color={white} 
+                            onPress={() => this.props.navigation.navigate('viewDesks')}/>
                         </View>
                         )
                 })}           

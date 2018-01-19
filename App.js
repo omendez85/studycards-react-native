@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, StatusBar } from 'react-native';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { TabNavigator } from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 import { FontAwesome, Ionicons } from 'react-native-fontawesome';
 import { Constants } from 'expo'
 
@@ -12,6 +12,7 @@ import {black} from './utils/colors';
 
 import desks from './components/desks';
 import cards from './components/cards';
+import viewDesk from './components/viewDesk';
 import addDesk from './components/addDesk';
 
 function SatusBar () {
@@ -22,31 +23,23 @@ function SatusBar () {
     )
 }
 
-const Menu = TabNavigator({
+const Menu = StackNavigator({
     Desks: {
         screen: desks,
         navigationOptions: {
-            tabBarLabel: 'Home'
+            title: 'Home'
+        }
+    },
+    viewDesks: {
+        screen: viewDesk,
+        navigationOptions: {
+            title: 'Desk'
         }
     },
     addDesks: {
         screen: addDesk,
         navigationOptions: {
             tabBarLabel: 'Add Desk'
-        }
-    }
-}, {
-    tabBarOptions: {
-        style: {
-            height: 30,
-            paddingBottom: 10, 
-            shadowColor: black,
-            shadowOffset: {
-                width: 0,
-                height: 3
-            },
-            shadowRadius: 6,
-            shadowOpacity: 1
         }
     }
 });
