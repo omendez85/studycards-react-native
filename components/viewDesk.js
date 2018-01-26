@@ -4,7 +4,7 @@ import { Button } from 'react-native-elements';
 import * as constants from '../utils/const'
 import styles from '../styles';
 
-class desksComponent extends Component {
+class ViewDesk extends Component {
 
     render() {
         const desk = this.props.navigation.state.params.desk;
@@ -15,21 +15,25 @@ class desksComponent extends Component {
             <View>
                 <Text style={styles.deskTitle}>{desk.title}</Text>
                 <Text style={styles.deskSubTitle}>{numQuestions} { numQuestions > 1 ? constants.cardLabelPlural : constants.cardLabel}</Text>
-                <Button
-                    icon={{ name: 'input' }}
-                    title={constants.addNewCardBtn}
-                    buttonStyle={styles.greenBtn}
-                    onPress={() => navigate('addDesks', { desk: desk })}
-                />
-                <Button
-                    icon={{ name: 'lightbulb-outline' }}
-                    title={constants.startQuizBtn}
-                    buttonStyle={styles.greenBtn}
-                    onPress={() => navigate('addDesks')}
-                />
+                <View style={styles.btnWrapper}>
+                    <Button
+                        icon={{ name: 'input' }}
+                        title={constants.addNewCardBtn}
+                        buttonStyle={styles.greenBtn}
+                        onPress={() => navigate('addCard', { desk: desk })}
+                    />
+                    { (numQuestions > 0) &&
+                        <Button
+                            icon={{ name: 'lightbulb-outline' }}
+                            title={constants.startQuizBtn}
+                            buttonStyle={styles.greenBtn}
+                            onPress={() => navigate('quiz', { questions: desk.questions, desk  })}
+                        />
+                    }
+                </View>
             </View>
         )
     }
 }
 
-export default desksComponent;
+export default ViewDesk;

@@ -1,117 +1,42 @@
 import { AsyncStorage } from 'react-native'
-//import initData from '../data/initialdata'
+import initData from '../data/initialdata'
 
-const DESKS = 'studyCards:desks';
-const CARDS = 'studyCards:cards';
-
-const initData = {
-    'React': {
-        title: 'React',
-        questions: [
-            {
-                question: 'What is React?',
-                answer: 'A library for managing user interfaces'
-            },
-            {
-                question: 'Where do you make Ajax requests in React?',
-                answer: 'The componentDidMount lifecycle event'
-            }
-        ]
-    },
-    'JavaScript': {
-        title: 'JavaScript',
-        questions: [
-            {
-                question: 'What is a closure?',
-                answer: 'The combination of a function and the lexical environment within which that function was declared.'
-            }
-        ]
-    },
-    'JavaScript2': {
-        title: 'JavaScript',
-        questions: [
-            {
-                question: 'What is a closure?',
-                answer: 'The combination of a function and the lexical environment within which that function was declared.'
-            }
-        ]
-    },
-    'JavaScript3': {
-        title: 'JavaScript',
-        questions: [
-            {
-                question: 'What is a closure?',
-                answer: 'The combination of a function and the lexical environment within which that function was declared.'
-            }
-        ]
-    },
-    'JavaScript4': {
-        title: 'JavaScript',
-        questions: [
-            {
-                question: 'What is a closure?',
-                answer: 'The combination of a function and the lexical environment within which that function was declared.'
-            }
-        ]
-    },
-    'JavaScript5': {
-        title: 'JavaScript',
-        questions: [
-            {
-                question: 'What is a closure?',
-                answer: 'The combination of a function and the lexical environment within which that function was declared.'
-            }
-        ]
-    },
-    'JavaScript6': {
-        title: 'JavaScript',
-        questions: [
-            {
-                question: 'What is a closure?',
-                answer: 'The combination of a function and the lexical environment within which that function was declared.'
-            }
-        ]
-    },
-    'JavaScript7': {
-        title: 'JavaScript',
-        questions: [
-            {
-                question: 'What is a closure?',
-                answer: 'The combination of a function and the lexical environment within which that function was declared.'
-            }
-        ]
-    },
-    'JavaScript8': {
-        title: 'JavaScript',
-        questions: [
-            {
-                question: 'What is a closure?',
-                answer: 'The combination of a function and the lexical environment within which that function was declared.'
-            }
-        ]
-    },
-    'JavaScript9': {
-        title: 'JavaScript',
-        questions: [
-            {
-                question: 'What is a closure?',
-                answer: 'The combination of a function and the lexical environment within which that function was declared.'
-            }
-        ]
-    }
-}
+const DESKS = 'studyCardsReact99:desks';
+const CARDS = 'studyCardsReact99:cards';
 
 export function setDefaultDesks () {
     AsyncStorage.setItem(DESKS, JSON.stringify(initData));
+}
+
+export function update (desks) {
+    AsyncStorage.setItem(DESKS, JSON.stringify(desks));
 }
 
 export function fetchDesks () {
     return AsyncStorage.getItem(DESKS);
 }
 
-export function addCartDesk (desks) {
-    AsyncStorage.setItem(DESKS, JSON.stringify(desks));
-    return AsyncStorage.getItem(DESKS);
+export function addCardDesk (currentDesk, card) {
+    return fetchDesks()
+        .then((desks) => {
+            const newDesks = JSON.parse(desks);
+            newDesks[currentDesk.title].questions.push(card);
+            update(newDesks);
+            return newDesks;
+        });
+}
+
+export function addDesk (deskTitle) {
+    return fetchDesks()
+        .then((desks) => {
+            const newDesks = JSON.parse(desks);
+            newDesks[deskTitle] = {
+                'title': deskTitle,
+                questions: []
+            }
+            update(newDesks);
+            return desks;
+        });
 }
 
 

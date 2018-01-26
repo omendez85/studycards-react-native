@@ -34,10 +34,12 @@ export default StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         marginTop: 30,
+        marginBottom: 10
     },
     deskSubTitle: {
         fontSize: 15,
-        textAlign: 'center'
+        textAlign: 'center',
+        marginBottom: 50
     },
     input:{
         height: 40,
@@ -54,5 +56,53 @@ export default StyleSheet.create({
     },
     addCard:{
         padding: 10
+    },
+    addDesk:{
+        padding: 10
+    },
+    h1: {
+        fontSize: 30,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+    h2: {
+        fontSize: 25,
+        textAlign: 'center',
+        fontWeight: 'bold',
+    },
+    card: {
+        marginTop: 40,
+        minHeight: '50%',
+        alignItems: 'center'
+    },
+    h2Card: {
+        marginBottom: 20,
+        minHeight: 100
+    },
+    btnCard: {
+        flexDirection: 'row',
+        justifyContent: 'space-around'
+    },
+    counterQuestions: {
+        color: colors.gray,
+        padding: 10
+    },
+    correctBtn: {
+        backgroundColor: colors.green,
+
+    },
+    incorrectBtn: {
+        backgroundColor: colors.red,
+
+    },
+    h2Responses:{
+        marginTop: 30
+    },
+    btnWrapper:{
+        flexDirection: 'row',
+        justifyContent: 'space-around'
+    },
+    btnAnswers: {
+        marginTop:50
     }
 });

@@ -1,16 +1,15 @@
 import React from 'react';
 import { View, StatusBar } from 'react-native';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
 import { Constants } from 'expo'
-import reducers from './reducers';
 import styles from './styles';
 
 import desks from './components/desks';
 import viewDesk from './components/viewDesk';
-import cards from './components/cards';
+import addCard from './components/addCard';
 import addDesk from './components/addDesk';
+import quiz from './components/quiz';
+import * as localNotifications from './utils/localNotifications';
 
 function SatusBar () {
     return (
@@ -33,23 +32,36 @@ const NavegationApp = StackNavigator({
             title: 'Desk'
         }
     },
+    addCard: {
+        screen: addCard,
+        navigationOptions: {
+            tabBarLabel: 'Add Card'
+        }
+    },
     addDesks: {
         screen: addDesk,
         navigationOptions: {
             tabBarLabel: 'Add Card'
         }
+    },
+    quiz: {
+        screen: quiz,
+        navigationOptions: {
+            tabBarLabel: 'Quiz'
+        }
     }
 });
 
 export default class App extends React.Component {
+    componentDidMount() {
+        localNotifications.setLocalNotification();
+    }
     render() {
         return (
-            <Provider store={createStore(reducers)}>
-                <View style={styles.main}>
-                    <SatusBar barStyle="light-content" />
-                    <NavegationApp />
-                </View>
-            </Provider>
+            <View style={styles.main}>
+                <SatusBar barStyle="light-content" />
+                <NavegationApp />
+            </View>
         );
     }
 }

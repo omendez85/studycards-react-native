@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-import { View, ScrollView } from 'react-native'
+import { ScrollView } from 'react-native'
 import { List, ListItem, Button } from 'react-native-elements';
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { Ionicons } from '@expo/vector-icons'
 
 import styles from '../styles';
 
@@ -12,19 +9,29 @@ import * as API from '../utils/api'
 import * as constants from '../utils/const'
 
 class desksComponent extends Component {
+    state = {
+        desks: {}
+    };
     componentDidMount () {
+        this.getData();
+    }
 
-        const { dispatch } = this.props;
-
-        API.setDefaultDesks();
-
+    getData = () =>{
         API.fetchDesks()
             .then((desks) => {
-                dispatch( desksActions.setDefaultDesks( JSON.parse(desks) ) )
+                if (desks === null){
+                    API.setDefaultDesks();
+                    this.getData();
+                } else {
+                    this.setState({
+                        desks: JSON.parse(desks)
+                    });
+                }
             });
     }
+
     render() {
-        const desks = this.props.desks;
+        const desks = this.state.desks;
         const { navigate } = this.props.navigation;
         return (
             [
@@ -56,12 +63,4 @@ class desksComponent extends Component {
     }
 }
 
-function mapStateToProps (state) {
-    return {
-        desks: state.desks
-    }
-  }
-
-export default connect(
-    mapStateToProps,
-)(desksComponent)
+export default desksComponent
