@@ -14,26 +14,26 @@ export function setDefaultDesks (data) {
     }
 }
 
-
-export function getDesk () {
-    return dispatch => {
-        Api.fetchDesks()
-            .then((res) => {
-                dispatch( setDesk(res) );
-            });
-    };
-}
-
-export function deleteDesk (entries) {
-    return {
-      type: DELETE_DESK,
-      entries,
-    }
-}
-  
-export function addDesk (entry) {
-    return {
-        type: ADD_DESK,
-        entry,
-    }
-}
+//
+// export function getDesk () {
+//     return dispatch => {
+//         Api.fetchDesks()
+//             .then((res) => {
+//                 dispatch( setDesk(res) );
+//             });
+//     };
+// }
+//
+// export function deleteDesk (entries) {
+//     return {
+//       type: DELETE_DESK,
+//       entries,
+//     }
+// }
+//
+// export function addDesk (entry) {
+//     return {
+//         type: ADD_DESK,
+//         entry,
+//     }
+// }

@@ -49,7 +49,7 @@ class desksComponent extends Component {
                     icon={{ name: 'add-circle' }}
                     title={constants.addNewDeskBtn}
                     buttonStyle={styles.greenBtn}
-                    onPress={() => navigate('addDesks')}
+                    onPress={() => navigate('addDesks', { new: true })}
                 />
             ]
         )
@@ -65,3 +65,16 @@ function mapStateToProps (state) {
 export default connect(
     mapStateToProps,
 )(desksComponent)
+
+
+{/* <View
+    key={desk}
+    style={[styles.containerDeskItem]}>
+    <Text
+        style={[styles.deskItem]}
+        onPress={() => navigation('viewDesks', { deck: desk })}>
+        {desk}
+    </Text>
+    <Text style={[styles.deskItem, styles.deskItemNumber]}>{numQuestions}</Text>
+    <Ionicons name={'md-arrow-round-forward'} size={17} color={styles.white}/>
+</View> */}

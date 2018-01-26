@@ -1,18 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
-
+import { View, StatusBar } from 'react-native';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
-import { FontAwesome, Ionicons } from 'react-native-fontawesome';
 import { Constants } from 'expo'
-
 import reducers from './reducers';
-import {black} from './utils/colors';
+import styles from './styles';
 
 import desks from './components/desks';
-import cards from './components/cards';
 import viewDesk from './components/viewDesk';
+import cards from './components/cards';
 import addDesk from './components/addDesk';
 
 function SatusBar () {
@@ -23,8 +20,8 @@ function SatusBar () {
     )
 }
 
-const Menu = StackNavigator({
-    Desks: {
+const NavegationApp = StackNavigator({
+    Home: {
         screen: desks,
         navigationOptions: {
             title: 'Home'
@@ -39,27 +36,20 @@ const Menu = StackNavigator({
     addDesks: {
         screen: addDesk,
         navigationOptions: {
-            tabBarLabel: 'Add Desk'
+            tabBarLabel: 'Add Card'
         }
     }
 });
 
-const mainStyles = StyleSheet.create({
-    main: {
-        flex: 1,
-        backgroundColor: 'rgba(0,0,0,1)'
-    }
-})
 export default class App extends React.Component {
     render() {
         return (
             <Provider store={createStore(reducers)}>
-                <View style={[mainStyles.main]}>
+                <View style={styles.main}>
                     <SatusBar barStyle="light-content" />
-                    <Menu />
+                    <NavegationApp />
                 </View>
             </Provider>
         );
     }
 }
-

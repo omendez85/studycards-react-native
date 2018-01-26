@@ -1,52 +1,35 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Platform, ScrollView } from 'react-native'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { Ionicons } from '@expo/vector-icons'
-
-import { white } from '../utils/colors';
-
-import * as desksActions from '../actions/desks'
-import * as API from '../utils/api'
-
-const desksStyles = StyleSheet.create({
-    containerDeskItem: {
-        borderColor: white,
-        borderWidth: 1,
-        borderRadius: 4,
-        padding: 10,
-        margin: 10,
-        marginTop: 0,
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-    deskItem:{
-        color: white,
-        paddingRight: 5
-    },
-    deskItemNumber:{
-        marginLeft: 'auto'
-    }
-})
+import { View, Text, Platform, ScrollView } from 'react-native'
+import { Button } from 'react-native-elements';
+import * as constants from '../utils/const'
+import styles from '../styles';
 
 class desksComponent extends Component {
-   
+
     render() {
-        const desks = this.props.desks;      
+        const desk = this.props.navigation.state.params.desk;
+        const { navigate } = this.props.navigation;
+        const numQuestions = desk.questions.length;
+
         return (
             <View>
-                <Text>ghfgh</Text>
+                <Text style={styles.deskTitle}>{desk.title}</Text>
+                <Text style={styles.deskSubTitle}>{numQuestions} { numQuestions > 1 ? constants.cardLabelPlural : constants.cardLabel}</Text>
+                <Button
+                    icon={{ name: 'input' }}
+                    title={constants.addNewCardBtn}
+                    buttonStyle={styles.greenBtn}
+                    onPress={() => navigate('addDesks', { desk: desk })}
+                />
+                <Button
+                    icon={{ name: 'lightbulb-outline' }}
+                    title={constants.startQuizBtn}
+                    buttonStyle={styles.greenBtn}
+                    onPress={() => navigate('addDesks')}
+                />
             </View>
         )
     }
 }
 
-function mapStateToProps (state) {
-    return {
-        desks: state.desks
-    }
-  }
-  
-export default connect(
-    mapStateToProps,
-)(desksComponent)
+export default desksComponent;

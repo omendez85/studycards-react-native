@@ -26,14 +26,91 @@ const initData = {
                 answer: 'The combination of a function and the lexical environment within which that function was declared.'
             }
         ]
+    },
+    'JavaScript2': {
+        title: 'JavaScript',
+        questions: [
+            {
+                question: 'What is a closure?',
+                answer: 'The combination of a function and the lexical environment within which that function was declared.'
+            }
+        ]
+    },
+    'JavaScript3': {
+        title: 'JavaScript',
+        questions: [
+            {
+                question: 'What is a closure?',
+                answer: 'The combination of a function and the lexical environment within which that function was declared.'
+            }
+        ]
+    },
+    'JavaScript4': {
+        title: 'JavaScript',
+        questions: [
+            {
+                question: 'What is a closure?',
+                answer: 'The combination of a function and the lexical environment within which that function was declared.'
+            }
+        ]
+    },
+    'JavaScript5': {
+        title: 'JavaScript',
+        questions: [
+            {
+                question: 'What is a closure?',
+                answer: 'The combination of a function and the lexical environment within which that function was declared.'
+            }
+        ]
+    },
+    'JavaScript6': {
+        title: 'JavaScript',
+        questions: [
+            {
+                question: 'What is a closure?',
+                answer: 'The combination of a function and the lexical environment within which that function was declared.'
+            }
+        ]
+    },
+    'JavaScript7': {
+        title: 'JavaScript',
+        questions: [
+            {
+                question: 'What is a closure?',
+                answer: 'The combination of a function and the lexical environment within which that function was declared.'
+            }
+        ]
+    },
+    'JavaScript8': {
+        title: 'JavaScript',
+        questions: [
+            {
+                question: 'What is a closure?',
+                answer: 'The combination of a function and the lexical environment within which that function was declared.'
+            }
+        ]
+    },
+    'JavaScript9': {
+        title: 'JavaScript',
+        questions: [
+            {
+                question: 'What is a closure?',
+                answer: 'The combination of a function and the lexical environment within which that function was declared.'
+            }
+        ]
     }
 }
 
-export function setDefaultDesks () { 
+export function setDefaultDesks () {
     AsyncStorage.setItem(DESKS, JSON.stringify(initData));
 }
 
 export function fetchDesks () {
+    return AsyncStorage.getItem(DESKS);
+}
+
+export function addCartDesk (desks) {
+    AsyncStorage.setItem(DESKS, JSON.stringify(desks));
     return AsyncStorage.getItem(DESKS);
 }
 
