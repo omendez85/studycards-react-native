@@ -10,14 +10,19 @@ import * as API from '../utils/api'
 import * as constants from '../utils/const'
 import * as localNotifications from '../utils/localNotifications';
 
+
+const initialState = {
+    currentQuestion: 0,
+    totalIncorrect: 0,
+    totalCorrect: 0,
+    totalQuestions: 0,
+    showResults: false
+}
+
 class QuizComponent extends Component {
-    state = {
-        currentQuestion: 0,
-        totalIncorrect: 0,
-        totalCorrect: 0,
-        totalQuestions: 0,
-        showResults: false
-    };
+
+    state = initialState;
+
     componentDidMount(){
         this.setState({
             totalQuestions: this.props.navigation.state.params.questions.length
@@ -29,14 +34,18 @@ class QuizComponent extends Component {
     nextQuestion = (question) => {
 
         if(question){
-            this.setState({
-                currentQuestion: this.state.currentQuestion + 1,
-                totalCorrect: this.state.totalCorrect + 1
+            this.setState((prevState) => {
+                return {
+                    currentQuestion: prevState.currentQuestion + 1,
+                    totalCorrect: prevState.totalCorrect + 1
+                }
             });
         } else {
-            this.setState({
-                currentQuestion: this.state.currentQuestion + 1,
-                totalIncorrect: this.state.totalIncorrect + 1
+            this.setState((prevState) => {
+                return {
+                    currentQuestion: prevState.currentQuestion + 1,
+                    totalIncorrect: prevState.totalIncorrect + 1
+                }
             });
         }
 
@@ -48,10 +57,8 @@ class QuizComponent extends Component {
     }
     tryAgain(){
         this.setState({
-            currentQuestion: 0,
-            totalIncorrect: 0,
-            totalCorrect: 0,
-            showResults: false
+            ...initialState,
+            totalQuestions: this.state.totalQuestions
         });
     }
     render() {

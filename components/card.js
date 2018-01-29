@@ -11,8 +11,7 @@ class Card extends Component {
     }
 
     render() {
-        const question = this.props.card.question;
-        const answer = this.props.card.answer;
+        const { question, answer } = this.props.card;
         return (
             <View style={styles.card}>
                 <Text
