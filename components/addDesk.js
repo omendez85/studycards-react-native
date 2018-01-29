@@ -18,7 +18,7 @@ class AddDeskComponent extends Component {
         const { navigate } = this.props.navigation;
         API.addDesk(this.state.newdesk)
             .then((desks) => {
-                navigate('Home');
+                navigate('viewDesks', { desk: desks[this.state.newdesk] });
             });
 
     }

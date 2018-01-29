@@ -11,7 +11,7 @@ export function clearLocalNotification () {
 
 function createNotification () {
     return {
-        title: constat.titleReminder,
+        title: constants.titleReminder,
         body: constants.messageReminder,
         ios: {
             sound: true,

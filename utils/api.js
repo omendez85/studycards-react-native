@@ -35,7 +35,7 @@ export function addDesk (deskTitle) {
                 questions: []
             }
             update(newDesks);
-            return desks;
+            return newDesks;
         });
 }
 
